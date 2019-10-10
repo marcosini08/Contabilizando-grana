@@ -3,6 +3,7 @@
 # Made by Sir Marcos Vinícius Naturalista de Bar
 # Início:
 
+print('\n                     Sistema para economizar dinheiro\n')
 
 
 
@@ -10,9 +11,7 @@
 from time import sleep
 import pickle
 from os import system
-from webbrowser import open_new
-sleep(0.8)
-print('\n                     Sistema para economizar dinheiro\n')
+
 
 
 
@@ -21,13 +20,13 @@ print('\n                     Sistema para economizar dinheiro\n')
 
 
 try:
-  dArq=open("/storage/emulated/0/download/Algoritmos/Economize MAIS DE 8000 contos/div.dat", "rb")
+  dArq=open("div.dat", "rb")
   saldo=pickle.load(dArq)
   dArq.close()
 except IOError or FileNotFoundError:
   print("Não há saldo nem dívida.")
   saldo=0
-  dArq=open('/storage/emulated/0/download/Algoritmos/Economize MAIS DE 8000 contos/div.dat', 'wb')
+  dArq=open('div.dat', 'wb')
   pickle.dump(saldo, dArq)
   dArq.close()
 
@@ -35,22 +34,21 @@ except IOError or FileNotFoundError:
 
 
 
-sleep(2.75)
 
 
-sec=int(input('\n \nEscolha a seção de destino:\n1- Movimentar grana\n2- Visualizar economias\n3- Dicas de economia\n0- Fechar o programa\n  --> '))
-mov, vis, web, fec = 1, 2, 3, 0
+
+sec=int(input('\n \nEscolha a seção de destino:\n1- Movimentar grana\n2- Visualizar economias\n0- Fechar o programa\n  --> '))
+mov, vis, fec = 1, 2, 0
 condi=[
   mov,
   vis,
-  web,
   fec
 ]
 while sec!=0:
   conta=0
   while sec not in condi and conta!=7:
     conta+=1
-    sec=int(input('\n \nEscolha uma seção válida de destino:\n1- Movimentar grana\n2- Visualizar economias\n3- Dicas pra economizar\n0- Fechar o sistema\n  -->  '))
+    sec=int(input('\n \nEscolha uma seção válida de destino:\n1- Movimentar grana\n2- Visualizar economias\n0- Fechar o sistema\n  -->  '))
   if conta==7:
     print('\nTentativas excedidas. O programa será finalizado.')
     break
@@ -62,18 +60,17 @@ while sec!=0:
       saldo=float(0)
       saldo+=val
     print('\n \nOperação realizada com sucesso!')
-    dArq= open("/storage/emulated/0/download/Algoritmos/Economize MAIS DE 8000 contos/div.dat", "wb")
+    dArq= open("div.dat", "wb")
     pickle.dump(saldo, dArq)
     dArq.close()
   elif sec==condi[1]:
     print('\n \n \nSaldo: R$ %0.2f'%(saldo))
-  elif sec==condi[2]:
-    open_new("https://google.com")
-  sec=int(input('\n \nEscolha uma seção de destino:\n1- Movimentar grana\n2- Visualizar economias\n3- Dicas pra poupar grana\n0- Fechar o sistema\n  -->  '))
+    
+  sec=int(input('\n \nEscolha uma seção de destino:\n1- Movimentar grana\n2- Visualizar economias\n0- Fechar o sistema\n  -->  '))
   
 
 
-dArq= open("/storage/emulated/0/download/Algoritmos/Economize MAIS DE 8000 contos/div.dat", "wb")
+dArq= open("div.dat", "wb")
 pickle.dump(saldo, dArq)
 dArq.close()
 
